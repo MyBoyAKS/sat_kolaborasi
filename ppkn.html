@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .background {
+            background-image: url('assets/indonesia_wonderland.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control the darkness */
+            z-index: -1;
+        }
+
+        .bg-image {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 50vh;
+            overflow: hidden;
+        }
+
+        .bg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bg-image .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .bg-image .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .bg-image .separator {
+            width: 80%;
+            height: 2px;
+            background-color: white;
+            margin-bottom: 1rem;
+        }
+
+        .bg-image .location {
+            font-size: 1.5rem;
+        }
+
+        .content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+            margin: 0 auto;
+            max-width: 1000px;
+            position: relative; /* Ensure content appears above the background */
+            z-index: 0; /* Ensures the content is above the background */
+        }
+
+        .content p {
+            text-align: justify;
+            margin-bottom: 1rem; /* Add a bottom margin for better readability */
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 10px 20px;
+            background-color: #f0ad4e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #ec971f;
+        }
+        
+        /* hamburger thing */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0s linear 0.3s;
+        }
+        .menu-btn {
+            position: fixed;
+            right: 25px;
+            top: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+        .menu-btn_burger {
+            width: 100%;
+            height: 5px;
+            background-color: #fff;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .menu-btn_burger.open {
+            transform: rotate(45deg);
+        }
+        .menu-btn_burger.close {
+            opacity: 0;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: #191919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 9998;
+        }
+        .menu.active {
+            transform: translateX(0);
+        }
+        .menu-nav {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .menu-nav li {
+            margin-top: 1rem;
+        }
+        .menu-nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .menu-nav a:hover {
+            color: #ffd700;
+        }
+        /* Custom Navbar Styles */
+        .custom-navbar {
+            background: rgb(191,137,61);
+            background: linear-gradient(135deg, rgb(228, 151, 93) 5%, rgb(190, 113, 62) 19%, rgb(120, 11, 11) 100%);
+            padding: 10px 0; /* Add padding */
+        }
+        .custom-navbar .navbar-brand h4 {
+            font-size: 1.5rem;
+            color: white; /* Change text color to white */
+            position: relative;
+        }
+        .custom-navbar .navbar-brand h4::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0; /* Initially set width to 0 */
+            height: 2px;
+            background-color: #ffffce; /* Line color */
+            transition: width 0.3s ease; /* Smooth transition for width */
+        }
+        .custom-navbar .navbar-brand:hover h4::after {
+            width: 100%; /* Change width to 100% on hover */
+        }
+        .custom-navbar .navbar-nav .nav-link {
+            color: white; /* Change text color to white */
+            font-size: 1.1rem; /* Adjust font size */
+            margin-right: 15px; /* Add some space between links */
+        }
+        .custom-navbar .navbar-nav .nav-link:hover {
+            color: #fff6c5; /* Change hover color */
+        }
+        .dropdown-menu a {
+            color: black;
+        }
+        .dropdown-menu a:hover {
+            color: #ffd700;
+        }
+
+        /* Radio buttons inline */
+        .content form p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px; /* Adjusts the space between the radio button and label */
+        }
+
+        .content form p label {
+            flex: 1; /* Allows the label to take the remaining space */
+        }
+        .indent {
+        text-indent: 2em; /* Adjust the value as needed */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="#">
+                <img src="assets/logo_serviam.png" style="width: 40px;" alt="Logo Serviam">
+                <h4 class="ms-3">SAT KOLABORASI</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>&#8942;</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="About.html">About</a></li>
+                            <li><a class="dropdown-item" href="kerajaan_surga.html">Kerajaan Surga</a></li>
+                            <li><a class="dropdown-item" href="ppkn.html">Materi PPKN</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="background"></div>
+    <div class="bg-image">
+        <img src="assets/ppkn.png" alt="Background Image">
+        <div class="mask">
+            <div class="title">Pendidikan Pancasila</div>
+            <div class="separator"></div>
+            <div class="location">Materi PPKN</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <p class="indent">
+            Pada masa kerajaan Mataram Islam melakukan perlawanan terhadap VOC yang bertujuan untuk mengusir bangsa asing dari Nusantara. Pada masa itu VOC memonopoli perdagangan di Jawa yang menyebabkan kerugian besar pada Mataram Islam sehingga sebagian besar masyarakat tidak berani untuk melawan VOC hanya beberapa saja yang berani. Pada masa kerajaan mataram kuno terdapat adanya pembagian golongan masyarakat berdasarkan kasta yaitu brahmana, ksatria, waisya, sudra. Kasta Brahmana adalah kasta tertinggi. Brahmana yang memiliki kemampuan dalam bidang agama, brahmana bertugas untuk memimpin upacara keagamaan, dan memiliki peran untuk menasihati raja. Golongan ksatria adalah golongan orang-orang yang memiliki jabatan dalam sistem pemerintahan kerajaan. Golongan yang masuk dalam kasta ksatria adalah presiden, raja, menteri, dan tentara. Golongan yang masuk dalam kasta ini tidak memiliki harta pribadi, semua milik kerajaan. Kasta waisya dikenal sebagai para pedagang dan pengusaha. Golongan yang masuk dalam kasta waisya ini memiliki harta pribadi. Lalu untuk kasta sudra adalah kasta terendah, seperti pengemis, pemulung, dan lain-lain.
+        </p>
+        <p class="indent">
+            Pada kehidupan bermasyarakat saat ini juga terdapat beberapa golongan, seperti golongan atas, golongan menengah, golongan bawah. Setiap golongan ini memiliki perannya masing-masing. Golongan atas ini  kelas sosial yang terdiri dari orang-orang dengan status sosial tertinggi, biasanya yang biasanya terdiri atas orang-orang kaya, pengusaha, dan lain-lain. Golongan menengah adalah golongan yang berada di antara golongan atas dan golongan bawah. Yang biasanya terdiri dari golongan menengah adalah pegawai, karyawan, dan lain- lain. Sedangkan golongan bawah adalah golongan yang berada pada kedudukan paling bawah dalam kedudukan di suatu masyarakat. Contohnya adalah pengemis, pada proses dimana kelas atas dan golongan menengah dapat menghasilkan perekonomian yang cukup untuk kehidupannya sedangkan golongan bawah berupa pengemis mengalami kebangkrutan yang menyebabkan Ia tidak bisa menghasilkan perekonomian lagi dan harus mendapat modal dari seseorang untuk memulai dari 0 kembali.
+        </p>
+        <p class="indent">
+            Hal yang perlu digaris bawahi pada ketiga masa ini adalah bahwa perbedaan golongan maupun kasta tidak menjadi halangan untuk memajukan bangsa kita. Meskipun kerajaan-kerajaan tersebut mengalami keruntuhan, hal ini justru membuat bangsa kita bersatu menjadi Indonesia, tidak lagi terpecah belah menjadi beberapa bagian. Dengan bersatu, kita dapat bekerja sama untuk menciptakan kedamaian dan memajukan bangsa menjadi bangsa yang modern. Pada masa Mataram Islam, sempat terjadi konflik antara Sultan Agung, raja ketiga Mataram, dengan VOC. Konflik ini tidak sesuai dengan sila-sila Pancasila, khususnya sila ketiga, yaitu Persatuan Indonesia. Pada masa itu, banyak masyarakat Mataram Islam yang tidak berani melawan VOC.
+        </p>
+        <br>
+        <p class="indent">
+            Kita sebagai warga negara yang tentunya juga memiliki peran untuk memajukan bangsa ini. Setiap golongan tentunya memiliki perannya masing-masing, terutama kita para generasi muda yang akan menjadi generasi penerus bangsa. Peran yang dapat kita lakukan sebagai generasi muda:
+        </p>
+        <form>
+            <p>
+                <input type="radio" id="agen-perubahan" name="peran" value="agen-perubahan">
+                <label for="agen-perubahan">Sebagai agen perubahan → Generasi muda berperan penting sebagai pendorong kemajuan bangsa. Mereka dapat mewujudkan hal ini dengan melakukan berbagai perubahan dalam masyarakat, baik di tingkat nasional maupun daerah, menuju masa depan yang lebih baik.</label>
+            </p>
+            <p>
+                <input type="radio" id="agen-pembangunan" name="peran" value="agen-pembangunan">
+                <label for="agen-pembangunan">Sebagai agen pembangunan → Generasi muda berperan dalam mendorong dan melaksanakan berbagai pembangunan di berbagai sektor. Contohnya, dalam bidang kebudayaan, mereka dapat memperkenalkan budaya Indonesia ke kancah internasional. Melalui upaya ini, potensi dan produktivitas generasi muda dapat dikembangkan bersama-sama untuk mencapai tujuan pembangunan bangsa Indonesia, baik saat ini maupun di masa depan.</label>
+            </p>
+            <p>
+                <input type="radio" id="agen-pembaruan" name="peran" value="agen-pembaruan">
+                <label for="agen-pembaruan">Sebagai agen pembaruan → Generasi muda harus mampu menganalisis perubahan zaman yang berdampak signifikan pada bangsa, sehingga mereka bisa menentukan apa yang perlu dan layak diubah serta apa yang harus dipertahankan.</label>
+            </p>
+            <p>
+                <input type="radio" id="membangun-pendidikan" name="peran" value="membangun-pendidikan">
+                <label for="membangun-pendidikan">Membangun pendidikan → Beberapa kontribusi pemuda dalam memajukan pendidikan di Indonesia dapat terlihat dari banyaknya tenaga pengajar muda yang antusias memberikan pendidikan berkualitas kepada generasi penerus. Tanpa pendidikan yang kokoh, di masa depan akan sulit bagi individu untuk menjalankan peran mereka sebagai warga negara Indonesia.</label>
+            </p>
+        </form>
+    </div>
+</body>
+</html>
