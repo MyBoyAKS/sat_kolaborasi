@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider Example</title>
+    <title>SAT KOLABORASI</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo_serviam.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: 'EB Garamond', serif;
@@ -14,97 +16,71 @@
             padding: 0;
         }
 
-        .bg-image {
-            position: relative;
-            text-align: center;
-            color: white;
-            height: 50vh;
-            overflow: hidden;
-        }
-
-        .bg-image img {
+        .background {
+            background-image: url('assets/foto_tere.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            z-index: -1;
         }
 
-        .bg-image .mask {
+        .background::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .bg-image .title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .bg-image .separator {
-            width: 80%;
-            height: 2px;
-            background-color: white;
-            margin-bottom: 1rem;
-        }
-
-        .carousel-container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto; /* Adjust the height as needed */
-            object-fit: cover;
-        }
-
-        .carousel-indicators button {
-            background-color: black; /* Change the indicator color */
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: black; /* Change the control icons color */
+            background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to control the darkness */
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark" style="
-    background: rgb(191,137,61);
-    background: radial-gradient(circle, rgba(228,190,93,1) 5%, rgba(218,173,66,1) 19%, rgba(150,116,26,1) 100%);">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand ms-3" href="#">
+            <a class="navbar-brand ms-5" href="index.html">
                 <img src="assets/logo_serviam.png" style="width: 40px;" alt="Logo Serviam">
-                <h4 class="ms-3">SAT KOLABORASI</h4>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarNav" style="margin-right:100px">
+                <ul class="navbar-nav fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link ms-5 me-5" href="#" id="satKolaborasi" role="button">
+                            SAT KOLABORASI
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="satKolaborasi">
+                            <li><a class="dropdown-item" href="materi_agama.html">Materi Agama</a></li>
+                            <li><a class="dropdown-item" href="materi_ppkn.html">Materi PPKN</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="about.html">About Us</a>
+                        <a class="nav-link" href="about.html">Credits</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     
-    <div class="bg-image">
+    <div class="background"></div>
+
+    <div class="article-title-image">
         <img src="assets/foto_tere.png" alt="Background Image">
         <div class="mask">
             <div class="title">Guru Pembimbing</div>
             <div class="separator"></div>
+            <div class="location">Guru Pembimbing Santa Theresia</div>
         </div>
     </div>
 
@@ -126,14 +102,6 @@
                     <img src="assets/pa_aryo.png" class="d-block w-100" alt="Image 3">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </div>
 
