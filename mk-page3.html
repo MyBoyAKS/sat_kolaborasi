@@ -29,6 +29,7 @@
             object-fit: cover;
         }
         
+
         .bg-image .mask {
             position: absolute;
             top: 0;
@@ -69,13 +70,21 @@
         .article-three-img {
             display: flex;
             text-align: justify;
-            padding: 50px 150px 0px 150px;
+            padding: 0px 150px 0px 150px;
             align-items: center;
             justify-content: center;
             flex-direction: column;
         }
         
         .article-image {
+            transition: 1s;
+            width: 40vw;
+            padding: 0px 50px 0px 50px;
+            height: auto;
+            filter: sepia(100%) brightness(70%);
+        }
+
+        .article-image1 {
             transition: 1s;
             width: 40vw;
             padding: 0px 50px 0px 50px;
@@ -262,6 +271,8 @@
         .menu-nav a:hover {
             color: #ffd700;
         }
+
+        
     </style>
 </head>
 <body>
@@ -314,7 +325,7 @@
 
             </p>
         </div>
-        <img src="assets/dinasti_sanjaya.png" class="article-image" alt="Mataram Kuno">
+        <img src="assets/dinasti_sanjaya.png" class="article-image1" alt="Mataram Kuno">
     </div>
 
     <!-- beberapa image di bawah -->
@@ -328,7 +339,7 @@
             </p>
         </div>
         <div class="article-images">
-            <img src="assets/kejayaan_mk1.jpg" class="article-image" alt="Mataram Kuno">
+            <img src="assets/kejayaan_mk1.jpg" class="article-image" alt="kejayaan_mk1">
         </div>
     </div>
 

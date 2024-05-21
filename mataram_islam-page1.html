@@ -29,6 +29,7 @@
             object-fit: cover;
         }
         
+
         .bg-image .mask {
             position: absolute;
             top: 0;
@@ -69,13 +70,24 @@
         .article-three-img {
             display: flex;
             text-align: justify;
-            padding: 50px 150px 0px 150px;
+            padding: 0px 150px 0px 150px;
             align-items: center;
             justify-content: center;
             flex-direction: column;
         }
         
         .article-image {
+                transition: 1s;
+            width: 40vw;
+            max-width: 700px; /* Set a maximum width */
+            height: 40vw;
+            max-height: 400px; /* Set a maximum height */
+            object-fit: cover; /* Ensure the image covers the area */
+            filter: sepia(100%) brightness(70%);
+            padding: 0px 50px 0px 50px;
+        }
+
+        .article-image1 {
             transition: 1s;
             width: 40vw;
             padding: 0px 50px 0px 50px;
@@ -102,7 +114,10 @@
             transition: 1s;
             filter: none;
         }
-        
+        .article-image1:hover {
+            transition: 1s;
+            filter: none;
+        }
         .pagination {
             display: flex;
             justify-content: center;
@@ -262,6 +277,10 @@
         .menu-nav a:hover {
             color: #ffd700;
         }
+        
+        p {
+            text-indent: 2em; /* Adjust the value as needed */
+        }  
     </style>
 </head>
 <body>
@@ -306,6 +325,9 @@
     <!-- imagenya di kanan -->
     <div class="article">
         <div class="article-text">
+            <h2>
+                Sejarah
+            </h2>
             <p>
                 Kerajaan Mataram Islam berlokasi di alas Mentaok (nama sebelum menjadi yogyakarta) yang saat ini sudah menjadi Yogyakarta. Adapun pusat pemerintahan Kesultanan Mataram saat itu adalah di Kotagede atau saat ini lebih dikenal dengan sebutan Kotagede. Wilayah kesultanan atau kerajaan Mataram Islam pada awalnya hanyalah sebuah hutan. Di tengah hutan tersebut berdiri sebuah istana tua yang dikenal sebagai Mataram Hindu. Area Mataram Hindu ini adalah wilayah yang dikuasai oleh kerajaan Pajang hingga akhir abad ke 16 M. Asal mula berdirinya Kesultanan Yogyakarta dan Kadipaten Pakualaman serta di awalnya kerajaan Islam pertama di Jawa yaitu Demak Bintoro, dilanjutkan dengan Kerajaan Pajang dan cerita di balik kemegahan Kerajaan Mataram Islam dapat kamu temui pada buku Menelusuri Jejak Mataram Islam Di Yogyakarta. lokasi tersebut dianugerahkan oleh Sultan Pajang untuk Ki Ageng Pemanahan bersama putranya Panembahan Senapati.Lokasi tersebut diberikan sebagai bentuk jasa mereka dalam keikutsertaannya dalam pertempuran yang mengalahkan Adipati Jipang Panolan dan Arya Penangsang. Setelah diberikan, daerah itupun dibersihkan oleh Ki Ageng Pemanahan.
             </p>
@@ -321,9 +343,9 @@
             </p>
         </div>
         <div class="article-images">
-            <img src="assets/voc_img.jpg" class="article-image" alt="Mataram Kuno">
-            <img src="assets/mi_img.jpg" class="article-image" alt="Mataram Kuno">
-            <img src="assets/mataram_islam_hdhd.png" class="article-image" alt="Mataram Kuno">
+            <img src="assets/voc_img.jpg" class="article-image1" alt="Mataram Kuno">
+            <img src="assets/mi_img.jpg" class="article-image1" alt="Mataram Kuno">
+            <img src="assets/mataram_islam_hdhd.png" class="article-image1" alt="Mataram Kuno">
         </div>
     </div>
 
