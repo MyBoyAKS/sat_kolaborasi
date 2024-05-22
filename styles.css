@@ -241,7 +241,7 @@ p {
 }
 
 .footer-index {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     color: white;
@@ -447,4 +447,10 @@ p {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: black; /* Change the control icons color */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better text visibility */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
 }
