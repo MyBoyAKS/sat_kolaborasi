@@ -153,6 +153,15 @@ footer{
     padding: 0px 50px 0px 50px;
 }
 
+.barcode-image {
+    width: 20vw;
+    max-width: 400px; /* Set a maximum width */
+    height: 20vw;
+    max-height: 400px; /* Set a maximum height */
+    object-fit: cover; /* Ensure the image covers the area */
+    margin-bottom: 50px;
+}
+
 .article-image1 {
     transition: 1s;
     width: 40vw;
